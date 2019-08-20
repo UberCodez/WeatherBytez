@@ -1,0 +1,16 @@
+{
+  "name": "weatherbytes",
+  "version": "1.0.0",
+  "description": "Rain or Shine",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "UberCodez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "metaweather": "0.0.2",
+    "mongodb": "^3.3.0"
+  }
+}
