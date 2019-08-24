@@ -9,6 +9,7 @@
   "author": "UberCodez",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "metaweather": "0.0.2",
     "mongodb": "^3.3.0"

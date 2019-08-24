@@ -4,8 +4,10 @@
  *
  *  TODO: Add error handling
  */
-const BaseCore = require("../core/BaseCore");
+const BaseCore = require("../api/core/BaseCore");
 const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
 class AppServer extends BaseCore {
   constructor() {
@@ -16,8 +18,10 @@ class AppServer extends BaseCore {
   //Move dynamic vars to config files TODO
   initialize() {
     this.app = express();
-    this.port = 3000;
+    this.port = 5000;
     this.app.use(express.json());
+    this.app.use(cors());
+    // this.app.use(express.static(path.join(__dirname, "../public")));
     // this.app.on("error", this.onError);
     // this.app.on("listening", this.onListening);
     this.app.listen(process.env.PORT || this.port, () =>

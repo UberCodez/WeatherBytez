@@ -12,29 +12,11 @@ class WeatherDao extends BaseDao {
     this.city = city;
   }
 
-  //Simply get Temp from Weather API
-  getCurrentTemperature() {
-    const apiModel = new WeatherAPIDao(this.city);
-    const result = apiModel.getCurrentTemperature();
-    return result;
-  }
-
-  //Simply get 3 day Temp from Weather API
-  getThreeDayTemperature() {
-    const apiResult = `80, 90, 85 in the ${this.city}`;
-    return apiResult;
-  }
-
-  //Simply get current Weather condtions from Weather API
+  //Get the Current Conditions(temp/cloudy/sunny/rain/etc)
   getCurrentConditions() {
-    const apiResult = `It's Cloudy in the ${this.city}`;
-    return apiResult;
-  }
-
-  //Simply get 3 Day Weather condtions from Weather API
-  getThreeDayConditions() {
-    const apiResult = `Cloudy, Rainy, Sunny in the ${this.city}`;
-    return apiResult;
+    const apiModel = new WeatherAPIDao(this.city);
+    const result = apiModel.getCurrentConditions();
+    return result;
   }
 
   //Store the current Weather forecast query
@@ -42,7 +24,13 @@ class WeatherDao extends BaseDao {
     const dbModel = new WeatherMongoDao();
     const result = dbModel.storeWeatherForecast(jsonObj);
     return result;
-    //ToDo Do stuff to store Json
+  }
+
+  //Retrieve all the Weather forecast queries made
+  getForecasts() {
+    const dbModel = new WeatherMongoDao();
+    const result = dbModel.getForecasts();
+    return result;
   }
 }
 
