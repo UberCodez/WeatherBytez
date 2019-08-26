@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import DataHolder from "./core/DataHolder";
+
 //Importing images so Webpack knows where to look
 import weatherSunny from "../assets/sunny.png";
 import weatherRain from "../assets/rain.png";
@@ -16,13 +18,13 @@ export default class WeatherPanel extends Component {
   state = {
     apiCity: "a City...",
     apiTemp: "Enter",
-    searchFld: "City",
+    searchFld: "",
     weatherImg: weatherSunny
   };
 
   //Call REST endpoint
   callBackendAPI = async () => {
-    if (this.state.searchFld === "City") return; //Type something :)
+    if (this.state.searchFld === "") return; //Type something :)
     const response = await fetch(`/api/v1/forecasts/${this.state.searchFld}`);
     const body = await response.json();
 
@@ -45,6 +47,8 @@ export default class WeatherPanel extends Component {
         this.setState({ apiCity: res.result.name });
         this.setState({ apiTemp: res.result.temp + "°" });
         this.setState({ weatherImg: this.lookupImg(res.result.cond) });
+        this.setState({ searchFld: "" }); //Reset input field
+        DataHolder.getContext().getForecasts();
       })
       .catch(err => console.log(err));
   };
@@ -94,6 +98,7 @@ export default class WeatherPanel extends Component {
                     placeholder="City"
                     aria-label="City"
                     onChange={this.handleChange}
+                    value={this.state.searchFld}
                   />
                   <button
                     className="btn btn-sm btn-outline-success mb-2 m-1"

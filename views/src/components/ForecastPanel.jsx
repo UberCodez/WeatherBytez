@@ -1,67 +1,84 @@
 import React, { Component } from "react";
+import DataHolder from "./core/DataHolder";
+//const WeatherPanel = require("./WeatherPanel");
 
 export default class ForecastPanel extends Component {
   state = {
-    forecasts: null
+    forecasts: []
   };
 
   componentDidMount() {
     this.getForecasts();
+    DataHolder.setContext(this);
   }
 
   //Call REST endpoint
   getForecasts = async () => {
-    this.callBackendAPI()
-      .then(res => {
-        this.setState({ forecasts: res });
-        console.log(`ForecastPanel> ${res}`);
-      })
-      .catch(err => console.log(err));
+    try {
+      const res = await this.callBackendAPI();
+      this.setState(
+        (this.state.forecasts = res.results),
+        () => (this.state.forecasts = res.results)
+      );
+    } catch (error) {
+      console.error(`An error occurred in React Component${error}`);
+    }
   };
 
   //Call REST endpoint
   callBackendAPI = async () => {
-    const response = await fetch(`/api/v1/forecasts/`);
-    const body = await response.json();
-    if (response.status !== 200) {
-      console.log(`ForecastPanel> ${response}`);
-      throw Error(body.message);
+    try {
+      const response = await fetch(`/api/v1/forecasts/`);
+      const body = await response.json();
+      if (response.status !== 200) {
+        throw Error(body.message);
+      }
+      return body;
+    } catch (error) {
+      console.error(`An error occurred in React Component${error}`);
     }
-
-    return body;
   };
 
   render() {
     return (
-      <div className="container">
-        <div className="card mx-auto border-light shadow p-1 w-50">
+      <div style={{ width: "378px" }} className="container">
+        <div className="card mx-auto border-light shadow p-1">
           <h3 className="text-black mx-auto m-2">Forecast History</h3>
+          <small className="mx-auto d-block text-muted">
+            (MongoDB dynamic data query)
+          </small>
         </div>
-        <div className="card mx-auto border-light shadow p-1 w-50">
-          <table className="table table-sm">
-            <thead>
+        <div className="card mx-auto border-light shadow p-1">
+          <table className="table table-sm table-striped">
+            <thead style={{ display: "block" }}>
               <tr>
-                <th scope="col">{this.state.forecasts}</th>
-                <th scope="col">Temperature</th>
-                <th scope="col">Conditions</th>
+                <th className="w-50" scope="col">
+                  City
+                </th>
+                <th className="w-50" scope="col">
+                  Temperature
+                </th>
+                <th className="w-50" scope="col">
+                  Conditions
+                </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Dallas</td>
-                <td>80/40</td>
-                <td>Raining</td>
-              </tr>
-              <tr>
-                <td>Richmond</td>
-                <td>80/40</td>
-                <td>Snowing</td>
-              </tr>
-              <tr>
-                <td>Detroit</td>
-                <td>80/40</td>
-                <td>Sunny</td>
-              </tr>
+            <tbody
+              style={{
+                position: "relative",
+                height: "100px",
+                width: "343px",
+                overflow: "auto",
+                display: "block"
+              }}
+            >
+              {this.state.forecasts.map(item => (
+                <tr key={item.temp}>
+                  <td className="w-50">{item.name}</td>
+                  <td className="w-50">{item.temp}</td>
+                  <td className="w-50">{item.condf}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

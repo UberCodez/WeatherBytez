@@ -12,25 +12,27 @@ class ForecastController extends BaseController {
   }
 
   //Call Forecast Service for current weather conditions
-  getCurrentConditions(req, res) {
-    const service = new ForecastService();
-    const promiseRes = service.getCurrentConditions(req, res);
-    return promiseRes
-      .then(result => {
-        return result;
-      })
-      .catch(console.error(`An error occurred in Controller`));
+  async getCurrentConditions(req, res) {
+    try {
+      const service = new ForecastService();
+      const promiseRes = await service.getCurrentConditions(req, res);
+      return promiseRes;
+    } catch (error) {
+      console.error(`An error occurred in Controller${error}`);
+      throw error;
+    }
   }
 
   //Retrieve all the Weather forecast queries made
-  getForecasts(req, res) {
-    const service = new ForecastService();
-    const promiseRes = service.getForecasts(req, res);
-    return promiseRes
-      .then(result => {
-        return result;
-      })
-      .catch(console.error(`An error occurred in Controller`));
+  async getForecasts(req, res) {
+    try {
+      const service = new ForecastService();
+      const promiseRes = await service.getForecasts(req, res);
+      return promiseRes;
+    } catch (error) {
+      console.error(`An error occurred in Controller${error}`);
+      throw error;
+    }
   }
 
   //Get endpoint routing for app server

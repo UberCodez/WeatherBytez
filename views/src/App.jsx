@@ -9,6 +9,7 @@ export default class App extends Component {
       <div>
         <main className="container" />
         <WeatherPanel />
+        <ForecastPanel />
       </div>
     );
   }

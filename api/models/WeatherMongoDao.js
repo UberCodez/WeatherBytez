@@ -15,9 +15,10 @@ class WeatherMongoDao extends BaseDao {
   }
 
   //Store the current Weather forecast query
-  storeWeatherForecast(jsonObj) {
-    //Once we have the async DB connection, continue to Insert
-    DbConnection.connectDb().then(() => {
+  async storeWeatherForecast(jsonObj) {
+    try {
+      //Once we have the async DB connection, continue to Insert
+      await DbConnection.connectDb();
       //Get the DB, then insert into the Collection
       const myDBO = DbConnection.dbClient.db("weatherDB");
       myDBO.collection("forecasts").insertOne(jsonObj, (err, results) => {
@@ -28,36 +29,33 @@ class WeatherMongoDao extends BaseDao {
         //Close DB connection
         DbConnection.closeDb();
       });
-    });
+    } catch (error) {
+      console.error(`An error occurred in DAO${error}`);
+      throw error;
+    }
   }
 
   //Retrieve all the Weather forecast queries made
-  getForecasts() {
-    //Once we have the async DB connection
-    const prom = new Promise((err, results) => {
-      const tmparray = [
-        { name: "City", temp: "75", cond: "Light Rain" },
-        { name: "City", temp: "75", cond: "Light Rain" },
-        { name: "City", temp: "75", cond: "Light Rain" }
-      ];
-      results = tmparray;
+  async getForecasts() {
+    await DbConnection.connectDb();
+    try {
+      //Get the DB, then insert into the Collection
+      const myDBO = DbConnection.dbClient.db("weatherDB");
+      const cursor = await myDBO
+        .collection("forecasts")
+        .find()
+        .sort({ $natural: -1 }); //Ascending order by last added
+      const results = await cursor.toArray();
+
+      //Close DB connection
+      DbConnection.closeDb();
+      console.log(`Found ${results.length} documents!`);
       return results;
-    });
-
-    // return DbConnection.connectDb().then(() => {
-    //   //Get the DB, then insert into the Collection
-    //   const myDBO = DbConnection.dbClient.db("weatherDB");
-    //   const cursor = myDBO.collection("forecasts").find();
-    //   return cursor.toArray((err, results) => {
-    //     //Check results
-    //     if (err) console.error(`Error occurred > ${err.errmsg}`);
-    //     else console.log(`Found ${results.length} documents!`);
-
-    //     //Close DB connection
-    //     DbConnection.closeDb();
-    //     return results;
-    //   });
-    // });
+    } catch (error) {
+      console.error(`An error occurred in DAO${error}`);
+      DbConnection.closeDb();
+      throw error;
+    }
   }
 }
 

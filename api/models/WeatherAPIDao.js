@@ -34,18 +34,20 @@ class WeatherAPIDao extends BaseDao {
           return {
             name: query,
             temp: ctf(bodyStr.the_temp),
-            cond: bodyStr.weather_state_abbr
+            cond: bodyStr.weather_state_abbr,
+            condf: bodyStr.weather_state_name
           };
         });
       })
       .catch(response => {
         //Handle errors gracefully for end user
         console.error(`No Data Available > ${response}`);
-        return {
-          name: "",
-          temp: "No City Data!",
-          cond: ""
-        };
+        throw error;
+        // return {
+        //   name: "",
+        //   temp: "No City Data!",
+        //   cond: ""
+        // };
       });
   }
 
