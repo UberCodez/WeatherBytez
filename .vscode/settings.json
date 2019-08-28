@@ -1,0 +1,7 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2780e293-6779-4302-9296-5492bcf307be/resourceGroups/WebStack/providers/Microsoft.Web/sites/WeatherBytez",
+    "appService.deploySubpath": "",
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ]
+}
