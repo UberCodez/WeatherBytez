@@ -45,7 +45,7 @@ export default class ForecastPanel extends Component {
         <div className="card mx-auto border-light shadow p-1">
           <h3 className="text-black mx-auto m-2">Forecast History</h3>
           <small className="mx-auto d-block text-muted">
-            (MongoDB dynamic data query)
+            (Azure Cosmos/MongoDB dynamic data query)
           </small>
         </div>
         <div className="card mx-auto border-light shadow p-1">

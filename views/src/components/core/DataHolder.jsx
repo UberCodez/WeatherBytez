@@ -1,5 +1,3 @@
-// import React, { Component } from "react";
-
 export default class DataHolder {
   constructor() {
     this.dataContext = {};
@@ -15,5 +13,3 @@ export default class DataHolder {
     this.dataContext = context;
   }
 }
-//Export the whole Class as a Module
-// module.exports = DataHolder;

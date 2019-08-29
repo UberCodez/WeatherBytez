@@ -48,15 +48,16 @@ class ConnectMeCore extends BaseCore {
 
 //Connection variables
 ConnectMeCore.dbClient = null;
+//Local MongoDB
 //ConnectMeCore.url = "mongodb://localhost:27017/weatherDB";
+//Remote Azure Cosmos (Prod)
 ConnectMeCore.url =
-  "mongodb://ubercodez:NxHmj4IBFArs0OhdokvxneqTJEi8IfbEbOMaJRojCVNQZDWH0J75LoGhT0IjaDtL5T7c7f6RSAkEqiNfTTdEOA%3D%3D@ubercodez.documents.azure.com:10255/weatherDB/?ssl=true"; //Prod only
+  "mongodb://ubercodez:NxHmj4IBFArs0OhdokvxneqTJEi8IfbEbOMaJRojCVNQZDWH0J75LoGhT0IjaDtL5T7c7f6RSAkEqiNfTTdEOA%3D%3D@ubercodez.documents.azure.com:10255/weatherDB/?ssl=true";
 ConnectMeCore.options = {
   bufferMaxEntries: 0,
   reconnectTries: 5000,
   useNewUrlParser: true,
   useUnifiedTopology: true
-  // ssl: true - prod only
 };
 
 //Export the whole Class as a Module
