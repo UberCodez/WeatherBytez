@@ -18,9 +18,9 @@ class AppServer extends BaseCore {
   //Move dynamic vars to config files TODO
   initialize() {
     this.app = express();
-    this.port = 5000;
+    this.port = 80;
     this.app.use(express.json());
-    this.app.use(cors());
+    //this.app.use(cors());
     this.app.listen(process.env.PORT || this.port, () =>
       console.log(`WeatherBytes app is listening on port ${this.port}!`)
     );

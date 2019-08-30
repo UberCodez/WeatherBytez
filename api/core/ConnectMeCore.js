@@ -52,7 +52,7 @@ ConnectMeCore.dbClient = null;
 //ConnectMeCore.url = "mongodb://localhost:27017/weatherDB";
 //Remote Azure Cosmos (Prod)
 ConnectMeCore.url =
-  "mongodb://ubercodez:NxHmj4IBFArs0OhdokvxneqTJEi8IfbEbOMaJRojCVNQZDWH0J75LoGhT0IjaDtL5T7c7f6RSAkEqiNfTTdEOA%3D%3D@ubercodez.documents.azure.com:10255/weatherDB/?ssl=true";
+  "mongodb://ubercodez:NxHmj4IBFArs0OhdokvxneqTJEi8IfbEbOMaJRojCVNQZDWH0J75LoGhT0IjaDtL5T7c7f6RSAkEqiNfTTdEOA%3D%3D@ubercodez.documents.azure.com:10255/weatherDB/?ssl=true&replicaSet=globaldb";
 ConnectMeCore.options = {
   bufferMaxEntries: 0,
   reconnectTries: 5000,
