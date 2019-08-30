@@ -21,7 +21,10 @@ class AppServer extends BaseCore {
     this.port = 80;
     this.app.use(express.json());
     //this.app.use(cors());
-    this.app.listen(process.env.PORT || this.port, () =>
+    // this.app.listen(process.env.PORT || this.port, () =>
+    //   console.log(`WeatherBytes app is listening on port ${this.port}!`)
+    // );
+    this.app.listen(this.port, () =>
       console.log(`WeatherBytes app is listening on port ${this.port}!`)
     );
     // this.app.use(express.static(path.join(__dirname, "../public")));
