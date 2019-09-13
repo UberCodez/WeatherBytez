@@ -24,7 +24,7 @@ class AppServer extends BaseCore {
     this.app.listen(process.env.PORT || this.port, () =>
       console.log(`WeatherBytes app is listening on port ${this.port}!`)
     );
-    // this.app.use(express.static(path.join(__dirname, "../public")));
+    this.app.use(express.static(path.join(__dirname, "../public")));
   }
 
   //Set our routes for our endpoints
