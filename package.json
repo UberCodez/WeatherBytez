@@ -2,9 +2,10 @@
   "name": "weatherbytez",
   "version": "1.0.0",
   "description": "Rain or Shine",
-  "main": "App.js",
+  "main": "api/App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node."
   },
   "author": "UberCodez",
   "license": "ISC",
