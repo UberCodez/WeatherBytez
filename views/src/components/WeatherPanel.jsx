@@ -103,6 +103,7 @@ export default class WeatherPanel extends Component {
                   <button
                     className="btn btn-sm btn-outline-success mb-2 m-1"
                     onClick={this.handleSearch}
+                    cursor="pointer"
                     type="submit"
                   >
                     Go
