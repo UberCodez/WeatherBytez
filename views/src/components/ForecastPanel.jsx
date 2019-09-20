@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import DataHolder from "./core/DataHolder";
-//const WeatherPanel = require("./WeatherPanel");
 
 export default class ForecastPanel extends Component {
   state = {

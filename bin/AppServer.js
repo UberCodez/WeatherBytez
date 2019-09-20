@@ -24,6 +24,7 @@ class AppServer extends BaseCore {
     this.app.listen(process.env.PORT || this.port, () =>
       console.log(`WeatherBytes app is listening on port ${this.port}!`)
     );
+    //We are serving the React frontend from the Express public folder
     this.app.use(express.static(path.join(__dirname, "../public")));
   }
 

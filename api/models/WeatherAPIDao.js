@@ -19,6 +19,7 @@ class WeatherAPIDao extends BaseDao {
     const api = new MetaWeatherAPI();
     let query = this.city;
     const ctf = this.convertCtoF;
+    const ctd = this.convertDate;
     //Find webid of City and return Promise up chain
     return api
       .search()
@@ -32,6 +33,7 @@ class WeatherAPIDao extends BaseDao {
           const bodyStr = response.body.consolidated_weather[0];
           //Retunr the disired result
           return {
+            date: ctd(bodyStr.applicable_date),
             name: query,
             temp: ctf(bodyStr.the_temp),
             cond: bodyStr.weather_state_abbr,
@@ -43,17 +45,19 @@ class WeatherAPIDao extends BaseDao {
         //Handle errors gracefully for end user
         console.error(`No Data Available > ${response}`);
         throw error;
-        // return {
-        //   name: "",
-        //   temp: "No City Data!",
-        //   cond: ""
-        // };
       });
   }
 
   //Utility
   convertCtoF(cel) {
     return ((cel * 9) / 5 + 32).toFixed(0);
+  }
+
+  convertDate(dateIn) {
+    let current_datetime = new Date(dateIn);
+    let formatted_date =
+      current_datetime.getMonth() + 1 + "/" + (current_datetime.getDate() + 1);
+    return formatted_date;
   }
 }
 

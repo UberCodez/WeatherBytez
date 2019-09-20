@@ -28,6 +28,7 @@ class WeatherMongoDao extends BaseDao {
 
         //Close DB connection
         DbConnection.closeDb();
+        return results;
       });
     } catch (error) {
       console.error(`An error occurred in DAO${error}`);

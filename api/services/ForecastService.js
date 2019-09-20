@@ -24,6 +24,7 @@ class ForecastService extends BaseService {
       else res.status(400).json({ error: "Ugh?" });
       //Store results in MongoDB
       weatherModel.storeWeatherForecast(result);
+
       //Return the 'final' async result
       return result;
     } catch (error) {
