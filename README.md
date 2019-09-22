@@ -33,4 +33,4 @@ API/Backend - Nodejs, Express, MongoDb
 
 ## Production Build
 
-- When building a Prod build for React (npm run build), we can add the contents of the build into the public folder if we want Express to be our 'web server' also. This way you don't have standup a 'Web' web app server and a 'NodeJS' web app server. The NodeJS web app server is enough.
+- When building a Prod build for React (npm run build), we can copy the contents of the build into the public folder if we want Express to be our 'web server' also. This way you don't have standup a 'Web' web app server and a 'NodeJS' web app server. The NodeJS web app server is enough for serving smaller apps.
