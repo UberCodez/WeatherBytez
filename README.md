@@ -1,15 +1,6 @@
 ## WeatherBytez
 
-           --_-_-_-_---
-              -_-_-_
-               -_-_-
-                -__-
-               _-_
-              _-
-              -_
-               _-_
-
----
+![preview](./appimage.png)
 
 Another Weather App? Well, mine is an example of organized MVC architecture based on API>Service>DAO in the backend, React is our View(UI). We use Express for the REST API server only, no middleware piping. All design pattern backend.
 
