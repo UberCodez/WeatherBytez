@@ -2,9 +2,9 @@
 
 ![preview](./appimage.png)
 
-Another Weather App? Well, mine is an example of organized MVC architecture based on API>Service>DAO in the backend, React is our View(UI). We use Express for the REST API server only, no middleware piping. All design pattern backend.
+Another Weather App? Well, mine is an example of organized MVC architecture based on API>Service>DAO in the backend, React is our View(UI). We use Express for the REST API server only, not using it's limited middleware piping. All middleware and data layers are built using proven design patterns.
 
-React > Forecast REST APIs > Forecast Services > Weather DAOs
+![preview](./archoverview.png)
 
 ## Technologies used...
 
