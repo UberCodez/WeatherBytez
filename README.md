@@ -11,7 +11,7 @@ All middleware and data layers are built using proven design patterns.
 
 UI - React, Bootstrap, Fetch, Webpack
 
-API/Backend - Nodejs, Express, MongoDb
+API/Backend - Nodejs, Express, MongoDb, External Weather REST API
 
 ## Tools used:
 
